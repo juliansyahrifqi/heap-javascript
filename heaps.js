@@ -5,18 +5,24 @@ class BinaryHeap {
 
     shiftUp() {
         let index = this.list.length - 1;
-        const parentIndex = Math.floor(index / 2);
+        // const parentIndex = Math.floor(index / 2);
 
-        while((index > 0) && (this.list[parentIndex] > this.list[index])) {
-            [this.list[index], this.list[parentIndex]] = [this.list[parentIndex], this.list[index]];
-            
-            // Same like code below
+        while(index > 0) {
+            const parentIndex = Math.floor((index-1)/ 2);
 
-            // let temp = this.list[index];
-            // this.list[index] = this.list[parentIndex];
-            // this.list[parentIndex] = temp;
-            index = parentIndex;
+            if(this.list[parentIndex] >= this.list[index]) {
+                [this.list[index], this.list[parentIndex]] = [this.list[parentIndex], this.list[index]];
             
+                // Same like code below
+
+                // let temp = this.list[index];
+                // this.list[index] = this.list[parentIndex];
+                // this.list[parentIndex] = temp;
+    
+                index = parentIndex;
+            } else {
+                break;
+            }
         }
     }
 
@@ -74,9 +80,8 @@ class BinaryHeap {
 
 const heap = new BinaryHeap();
 
-for(let i = 10; i >= 0; i--) {
-    let random = Math.floor(Math.random(2) + i);
-    heap.insertData(random);
+for(let i = 8; i >= 0; i--) {
+    heap.insertData(i);
 }
 // heap.insertData(5);
 // heap.insertData(7);
@@ -85,6 +90,5 @@ for(let i = 10; i >= 0; i--) {
 // heap.insertData(12);
 // heap.insertData(18);
 // heap.insertData(25);
-// heap.deleteData();
 
 console.log(heap.list);
